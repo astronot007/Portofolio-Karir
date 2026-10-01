@@ -132,33 +132,8 @@
 										+62-877-8026-1959
 									</li>
 									<li>
-										<h3 class="icon solid fa-envelope"><span class="label">Email</span></h3>
-										<a href="#" onclick="navigator.clipboard.writeText('Link copied!'); alert('Link berhasil dicopy!'); return false;">sofyanmaulani@gmail.com</a>
-										</a>
-
-		<!-- Elemen Balon Notifikasi -->
-		<div id="toastNotification" class="toast">Link successfully copied!</div>
-
-		<!-- Tambahkan JavaScript ini di bagian bawah sebelum penutup </body> -->
-		<script>
-			function copyLink(event, url) {
-				event.preventDefault(); // Mencegah halaman melompat
-
-				navigator.clipboard.writeText(url).then(function() {
-					showToast();
-				}).catch(function(err) {
-					console.error('Gagal menyalin: ', err);
-				});
-			}
-
-			function showToast() {
-				var toast = document.getElementById("toastNotification");
-				toast.className = "toast show";
-				setTimeout(function() {
-					toast.className = "toast";
-				}, 2000); // Balon hilang otomatis setelah 2 detik
-			}
-		</script>
+    									<h3 class="icon solid fa-envelope"><span class="label">Email</span></h3>
+  										<a href="#" onclick="copyLink(event, 'sofyanmaulani@gmail.com')">sofyanmaulani@gmail.com</a>
 									</li>
 								</ul>
 							</div>
@@ -507,6 +482,24 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
 			<script src="assets/js/breakpoints.min.js"></script>
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
+		<script>
+    function copyLink(event, text) {
+        event.preventDefault(); // Mencegah halaman melompat
+        navigator.clipboard.writeText(text).then(function() {
+            showToast();
+        }).catch(function(err) {
+            console.error('Gagal menyalin: ', err);
+        });
+    }
+
+    function showToast() {
+        var toast = document.getElementById("toastNotification");
+        toast.className = "toast show";
+        setTimeout(function() {
+            toast.className = "toast";
+        }, 2000); // Balon hilang otomatis setelah 2 detik
+    }
+</script>
 
 	</body>
 </html>
