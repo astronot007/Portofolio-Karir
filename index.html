@@ -10,6 +10,31 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
+<!-- Tambahkan CSS untuk Balon Notifikasi di sini -->
+		<style>
+			.toast {
+				visibility: hidden;
+				min-width: 250px;
+				background-color: #333;
+				color: #fff;
+				text-align: center;
+				border-radius: 8px;
+				padding: 16px;
+				position: fixed;
+				z-index: 10000;
+				left: 50%;
+				top: 50%;
+				transform: translate(-50%, -50%);
+				font-size: 16px;
+				box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+				opacity: 0;
+				transition: opacity 0.3s, visibility 0.3s;
+			}
+			.toast.show {
+				visibility: visible;
+				opacity: 1;
+			}
+		</style>
 	</head>
 	<body class="is-preload">
 
@@ -108,7 +133,32 @@
 									</li>
 									<li>
 										<h3 class="icon solid fa-envelope"><span class="label">Email</span></h3>
-										<a href="#" onclick="navigator.clipboard.writeText('https://contoh.com'); alert('Link berhasil dicopy!'); return false;">sofyanmaulani@gmail.com</a>
+										<a href="#" onclick="navigator.clipboard.writeText('Link copied!'); alert('Link berhasil dicopy!'); return false;">sofyanmaulani@gmail.com</a>
+										</a>
+
+		<!-- Elemen Balon Notifikasi -->
+		<div id="toastNotification" class="toast">Link successfully copied!</div>
+
+		<!-- Tambahkan JavaScript ini di bagian bawah sebelum penutup </body> -->
+		<script>
+			function copyLink(event, url) {
+				event.preventDefault(); // Mencegah halaman melompat
+
+				navigator.clipboard.writeText(url).then(function() {
+					showToast();
+				}).catch(function(err) {
+					console.error('Gagal menyalin: ', err);
+				});
+			}
+
+			function showToast() {
+				var toast = document.getElementById("toastNotification");
+				toast.className = "toast show";
+				setTimeout(function() {
+					toast.className = "toast";
+				}, 2000); // Balon hilang otomatis setelah 2 detik
+			}
+		</script>
 									</li>
 								</ul>
 							</div>
